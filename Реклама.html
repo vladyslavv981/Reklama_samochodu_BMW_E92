@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMW E92 Легендарная Машына</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0a0a0a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00a2ff;
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
+      url('https://tuningchip.pl/wp-content/uploads/2023/10/Bmw-e92-tuning-1024x512.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #ddd;
+      margin-bottom: 35px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 40px;
+      background: #00a2ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: 0.3s;
+      box-shadow: 0 10px 30px rgba(0,162,255,0.4);
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      background: #0089d6;
+    }
+
+    section {
+      padding: 120px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 60px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: #121212;
+      padding: 40px 30px;
+      border-radius: 24px;
+      transition: 0.4s;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: #00a2ff;
+      box-shadow: 0 15px 35px rgba(0,162,255,0.2);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: 0.4s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.04);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat {
+      background: #111;
+      padding: 40px;
+      border-radius: 20px;
+      min-width: 220px;
+    }
+
+    .stat h2 {
+      font-size: 3rem;
+      color: #00a2ff;
+      margin-bottom: 10px;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, #00111d, #003f66);
+      border-radius: 30px;
+      padding: 80px 40px;
+    }
+
+    .cta h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .cta p {
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 35px;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      background: #050505;
+      color: #888;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: 1s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+.contact-form {
+  max-width: 700px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #bbb;
+}
+
+#success-message {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #7dffb3;
+  font-weight: 600;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+  </style></head>
+<body>  <header>
+    <div class="logo">BMW E92 M3</div>
+    <nav>
+      <a href="#about">О модели</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#specs">Характеристики</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </header>  <section class="hero">
+    <div class="hero-content">
+      <h1>BMW E92</h1>
+      <p>
+        Идеальное сочетание агрессии, стиля и мощности. Легендарное купе,
+        которое дарит эмоции при каждом нажатии на педаль газа.
+      </p>
+      <a href="#contact" class="btn">Записаться на тест-драйв</a>
+    </div>
+  </section>  <section id="about" class="reveal">
+    <h2 class="section-title">Почему именно E92?</h2><div class="features">
+  <div class="feature-card">
+    <h3>⚡️ Мощность</h3>
+    <p>
+      Турбированный двигатель и идеальная развесовка обеспечивают
+      незабываемую динамику.
+    </p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🎯 Управляемость</h3>
+    <p>
+      Спортивная подвеска и задний привод делают каждую поездку особенной.
+    </p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🔥 Дизайн</h3>
+    <p>
+      Элегантный кузов купе с агрессивным характером привлекает взгляды.
+    </p>
+  </div>
+
+  <div class="feature-card">
+    <h3>🎵 Комфорт</h3>
+    <p>
+      Премиальный салон, качественные материалы и современная мультимедиа.
+    </p>
+  </div>
+</div>
+
+  </section>  <section id="gallery" class="reveal">
+    <h2 class="section-title">Галерея</h2><div class="gallery">
+  <img src="https://static0.topspeedimages.com/wordpress/wp-content/uploads/jpg/201207/2014-bmw-m3-multifunction.jpg" alt="BMW E92">
+  <img src="https://i.pinimg.com/originals/57/99/6e/57996e59bfd81b310d66f3bf6f68d6b9.jpg" alt="BMW Coupe">
+  <img src="https://2.bp.blogspot.com/-Dh2vOMHfnBg/UBsPxgDTuQI/AAAAAAAASpo/wcxm2CX22jI/s1600/03.jpg" alt="BMW Interior">
+</div>
+
+  </section>  <section id="specs" class="reveal">
+    <h2 class="section-title">Характеристики</h2><div class="stats">
+  <div class="stat">
+    <h2 class="counter" data-target="306">0</h2>
+    <p>Лошадиных сил</p>
+  </div>
+
+  <div class="stat">
+    <h2 class="counter" data-target="5.4">0</h2>
+    <p>0-100 км/ч</p>
+  </div>
+
+  <div class="stat">
+    <h2 class="counter" data-target="250">0</h2>
+    <p>Макс. скорость</p>
+  </div>
+</div>
+
+  </section>  <section id="contact" class="reveal">
+    <div class="cta">
+      <h2>Почувствуй драйв BMW</h2>
+      <p>
+        Оставьте заявку прямо сейчас и получите персональное предложение
+        на BMW E92.
+      </p><a href="#" class="btn" onclick="showMessage()">Оставить заявку</a>
+</div>
+<form class="contact-form" onsubmit="sendEmail(event)">
+  <input type="text" id="name" placeholder="Ваше имя" required>
+
+  <input type="email" id="email" placeholder="Ваш Gmail" required>
+
+  <textarea id="message" rows="5" placeholder="Напишите ваше сообщение..."></textarea>
+
+  <button type="submit" class="btn">
+    Отправить заявку
+  </button>
+</form>
+
+<div id="success-message"></div>
+  </section>  <footer>
+    © 2026 BMW E92 Promo Page. Все права защищены.
+  </footer> 
+   <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealSections() {
+      const triggerBottom = window.innerHeight * 0.85;
+
+      reveals.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+
+        if(sectionTop < triggerBottom) {
+          section.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealSections);
+    revealSections();
+
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const updateCounter = () => {
+        const target = +counter.getAttribute('data-target');
+        const current = +counter.innerText;
+
+        const increment = target / 100;
+
+        if(current < target) {
+          counter.innerText = (current + increment).toFixed(target % 1 !== 0 ? 1 : 0);
+          setTimeout(updateCounter, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCounter();
+    }); 
+    function showMessage() {
+      alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
+    }
+
+  </script>
+ <script>
+
+function sendEmail(event) {
+
+  event.preventDefault();
+
+  let name =
+  document.getElementById("name").value;
+
+  let email =
+  document.getElementById("email").value;
+
+  let message =
+  document.getElementById("message").value;
+
+  let subject =
+  "Заявка BMW E92";
+
+  let body =
+  "Имя: " + name +
+  "\nEmail: " + email +
+  "\nСообщение: " + message;
+
+  window.location.href =
+  "mailto:vladyslavvv981@gmail.com?subject="
+  + subject +
+  "&body=" +
+  encodeURIComponent(body);
+
+  document.getElementById(
+  "success-message"
+  ).innerText =
+  "Gmail открыт";
+
+}
+
+</script>
+  </body>
+</html>
